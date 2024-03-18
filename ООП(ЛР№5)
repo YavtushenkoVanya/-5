@@ -1,0 +1,47 @@
+using System;
+using System.Windows.Forms;
+
+namespace YourNamespace
+{
+    static class Program
+    {
+        [STAThread]
+        static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // Задані три змінні символьного типу
+            char var1 = '3';
+            char var2 = '5';
+            char var3 = '7';
+
+            // Перевірка на символьний тип і кількість символів
+            if (char.IsDigit(var1) && char.IsDigit(var2) && char.IsDigit(var3))
+            {
+                // Об'єднання змінних у ціле число
+                int combinedNumber;
+                if (int.TryParse($"{var1}{var2}{var3}", out combinedNumber))
+                {
+                    // Формування повідомлення з результатами
+                    string message = $"Об'єднане число: {combinedNumber}\n";
+
+                    // Якщо числа допустимі для утворення іншого числа, обчислюємо квадрат
+                    int squaredNumber = combinedNumber * combinedNumber;
+                    message += $"Квадрат об'єднаного числа: {squaredNumber}";
+
+                    // Виведення результатів у вікні повідомлень
+                    MessageBox.Show(message);
+                }
+                else
+                {
+                    MessageBox.Show("Число не може бути утворене з даних змінних.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Число не може бути утворене з даних змінних.");
+            }
+        }
+    }
+}
